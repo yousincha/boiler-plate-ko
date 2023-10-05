@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "../_actions/user_actions";
-import { useNavigate } from "react-router-dom";
 
-function Auth({ SpecificComponent, option, adminRoute = null }) {
+function Auth({ SpecificComponent, option, adminRoute = null, history }) {
   function AuthenticationCheck(props) {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
       const fetchData = async () => {
@@ -15,11 +13,11 @@ function Auth({ SpecificComponent, option, adminRoute = null }) {
           console.log(response);
 
           if (!response.payload.isAuth && option) {
-            navigate("/login");
+            history.push("/login");
           } else if (adminRoute && !response.payload.isAdmin) {
-            navigate("/");
+            history.push("/");
           } else if (option === false) {
-            navigate("/");
+            history.push("/");
           }
         } catch (error) {
           console.error(error);
@@ -27,7 +25,7 @@ function Auth({ SpecificComponent, option, adminRoute = null }) {
       };
 
       fetchData();
-    }, [dispatch, navigate]); // option과 adminRoute를 의존성 배열에서 제거
+    }, [dispatch]);
 
     return <SpecificComponent {...props} />;
   }
