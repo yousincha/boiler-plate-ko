@@ -1,8 +1,8 @@
-import { LOGIN_USER, REGISTER_USER } from "../_actions/types";
+import { LOGIN_USER, REGISTER_USER, AUTH_USER } from "../_actions/types";
 
 const initialState = {
   loginSuccess: false,
-  registerSuccess: false, // 새로운 상태 필드 추가
+  registerSuccess: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -12,6 +12,9 @@ export default function userReducer(state = initialState, action) {
 
     case REGISTER_USER:
       return { ...state, registerSuccess: action.payload };
+
+    case AUTH_USER:
+      return { ...state, userData: action.payload };
 
     default:
       return state;

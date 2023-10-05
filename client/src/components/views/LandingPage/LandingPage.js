@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // useNavigate를 사용합니다.
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
-  const navigate = useNavigate(); // useNavigate 훅을 사용하여 라우팅을 처리합니다.
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("/api/hello").then((response) => {
@@ -14,7 +14,7 @@ function LandingPage() {
   const onClickHandler = () => {
     axios.get("/api/users/logout").then((response) => {
       if (response.data.success) {
-        navigate("/login"); // navigate를 사용하여 로그아웃 후 로그인 페이지로 이동합니다.
+        navigate("/login"); // 로그아웃 후 로그인 페이지로 이동
       } else {
         alert("로그아웃 하는데 실패 했습니다.");
       }

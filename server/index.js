@@ -92,8 +92,9 @@ app.post("/api/users/login", (req, res) => {
 // role 1 어드민 role2 특정부서 어드민
 // role 0 일반유저 role0이 아니면 관리자
 
-app.get("/auth", auth, (req, res) => {
-  //미들웨어를 통과 == Authentication True
+// 서버 측 라우트 정의
+app.get("/api/users/auth", auth, (req, res) => {
+  // 미들웨어를 통과 == Authentication True
   res.status(200).json({
     _id: req.user._id,
     isAdmin: req.user.role === 0 ? false : true,
