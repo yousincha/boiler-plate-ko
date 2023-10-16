@@ -8,7 +8,7 @@ function Auth({ SpecificComponent, option, adminRoute = null, history }) {
 
     useEffect(() => {
       const fetchData = async () => {
-        try {
+        try { 
           const response = await dispatch(auth());
           console.log(response);
 
